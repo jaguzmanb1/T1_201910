@@ -7,7 +7,7 @@ package model.data_structures;
  * @author Fernando De la Rosa
  *
  */
-public class ArregloDinamico implements IArregloDinamico {
+public class ArregloDinamico<T> implements IArregloDinamico<T> {
 	/**
 	 * Capacidad maxima del arreglo
 	 */
@@ -19,26 +19,28 @@ public class ArregloDinamico implements IArregloDinamico {
 	/**
 	 * Arreglo de elementos de tamaNo maximo
 	 */
-	private String elementos[ ];
+	private T elementos[ ];
 
 	/**
 	 * Construir un arreglo con la capacidad maxima inicial.
 	 * @param max Capacidad maxima inicial
 	 */
+	@SuppressWarnings("unchecked")
 	public ArregloDinamico( int max )
 	{
-		elementos = new String[max];
+		elementos = (T[]) new Comparable[max];
 		tamanoMax = max;
 		tamanoAct = 0;
 	}
 
-	public void agregar( String dato )
+	@SuppressWarnings("unchecked")
+	public void agregar( T dato )
 	{
 		if ( tamanoAct == tamanoMax )
 		{  // caso de arreglo lleno (aumentar tamaNo)
 			tamanoMax = 2 * tamanoMax;
-			String [ ] copia = elementos;
-			elementos = new String[tamanoMax];
+			T [ ] copia = elementos;
+			elementos = (T[]) new Comparable[tamanoMax];
 			for ( int i = 0; i < tamanoAct; i++)
 			{
 				elementos[i] = copia[i];
@@ -54,16 +56,16 @@ public class ArregloDinamico implements IArregloDinamico {
 		return tamanoAct;
 	}
 
-	public String darElemento(int i) {
+	public T darElemento(int i) {
 		// TODO implementar
 		return elementos[i];
 	}
 
-	public String buscar(String dato) {
+	public T buscar(T dato) {
 		// TODO implementar
-		String respuesta = null;
+		T respuesta = null;
 		for ( int i = 0; i < tamanoAct; i++ ){
-			if ( elementos[i].compareTo(dato) == 0){
+			if ( elementos[i].equals(dato)){
 				respuesta = elementos[i];
 			}
 		} 
@@ -71,24 +73,25 @@ public class ArregloDinamico implements IArregloDinamico {
 		return respuesta;
 	}
 
-	public String eliminar(String dato) {
+	@SuppressWarnings("unchecked")
+	public T eliminar(T dato) {
 		// TODO implementar
 		// Recomendacion: Usar el criterio de comparacion natural (metodo compareTo()) definido en Strings.
-		String [ ] copia = elementos;
+		T [ ] copia = elementos;
 		int i = 0;
-		int indice = 0;
 		int j = 0;
+		T elemento = null;
 		boolean elimino = false;
-		elementos = new String[tamanoMax];
+		elementos = (T[]) new Comparable[tamanoMax];
 		while (i != tamanoAct)
 		{
-			if (copia[i].compareTo(dato) != 0){
+			if (copia[i].equals(dato)){
 				elementos[j] = copia[i];
 				j++;
 			}
 			else{
 				elimino = true;
-				indice = i;
+				elemento = copia[i];
 			}
 			i++;
 			
@@ -97,6 +100,12 @@ public class ArregloDinamico implements IArregloDinamico {
 			tamanoAct--;
 		}
 
-		return String.valueOf(indice);
+		return elemento;
+	}
+
+	@Override
+	public int compareTo(T o) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }

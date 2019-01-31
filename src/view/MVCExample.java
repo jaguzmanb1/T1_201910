@@ -21,8 +21,8 @@ public class MVCExample {
 
 			Scanner lector = new Scanner(System.in);
 			boolean fin = false;
-			String dato = "";
-			String respuesta = "";
+			Integer dato = null;
+			Integer respuesta = null;
 
 			while( !fin ){
 				printMenu();
@@ -39,7 +39,7 @@ public class MVCExample {
 
 					case 2:
 						System.out.println("--------- \nDar cadena (simple) a ingresar: ");
-						dato = lector.next();
+						dato = lector.nextInt();
 						Controller.agregar(dato);
 						System.out.println("Dato agregado");
 						System.out.println("Numero actual de elementos " + Controller.darTamano() + "\n---------");						
@@ -47,7 +47,7 @@ public class MVCExample {
 
 					case 3:
 						System.out.println("--------- \nDar cadena (simple) a buscar: ");
-						dato = lector.next();
+						dato = lector.nextInt();
 						respuesta = Controller.buscar(dato);
 						if ( respuesta != null)
 						{
@@ -62,7 +62,7 @@ public class MVCExample {
 
 					case 4:
 						System.out.println("--------- \nDar cadena (simple) a eliminar: ");
-						dato = lector.next();
+						dato = lector.nextInt();
 						respuesta = Controller.eliminar(dato);
 						if ( respuesta != null)
 						{

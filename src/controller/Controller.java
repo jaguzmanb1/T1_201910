@@ -6,7 +6,7 @@ import model.data_structures.IArregloDinamico;
 public class Controller {
 
 	/* Instancia del Modelo del mundo */
-	private static IArregloDinamico modelo = new ArregloDinamico(7);
+	private static IArregloDinamico <Integer> modelo = new ArregloDinamico<Integer> (7);
 	
 	/**
 	 * Requerimiento crear Arreglo Dinamico
@@ -21,7 +21,7 @@ public class Controller {
 	 * Requerimiento agregar elemento
 	 * @param dato Dato a agregar al final del arreglo
 	 */
-	public static void agregar(String dato)
+	public static void agregar(Integer dato)
 	{
 		modelo.agregar(dato);
 	}
@@ -31,7 +31,7 @@ public class Controller {
 	 * @param dato Dato a buscar
 	 * @return dato encontrado
 	 */
-	public static String buscar(String dato)
+	public static Integer buscar(Integer dato)
 	{
 		return modelo.buscar(dato);
 	}
@@ -41,7 +41,7 @@ public class Controller {
 	 * @param dato Dato a eliminar
 	 * @return dato eliminado
 	 */
-	public static String eliminar(String dato)
+	public static Integer eliminar(Integer dato)
 	{
 		return modelo.eliminar(dato);
 	}
@@ -50,7 +50,7 @@ public class Controller {
 	/**
 	 * Servicio de consulta de numero de elementos presentes en el arreglo 
 	 * @return numero de elementos presentes en el arreglo
-	 */
+	 */	
 	public static int darTamano()
 	{
 		return modelo.darTamano();
